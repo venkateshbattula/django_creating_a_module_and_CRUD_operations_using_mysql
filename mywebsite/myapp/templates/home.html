@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django home page</title>
+</head>
+<body>
+    <h1> Welcome to Django <strong style="color:red;">Home</strong></h1>
+    <h2><strong style="text-align:right;color:blue;">{{ message }}</strong></h2>
+    <h3 style="text-align:center;color:#cccc00;">{{ message1 }}</h3>
+    <h4>
+        <ul>
+            {% for i in ls1 %}
+            <li style="color:{% cycle 'red' 'green' 'blue' %}"> {{ i }}</li>
+            {% endfor %}
+        </ul>
+    </h4>
+    <a href="{% url 'index' %}">click here to move index</a><br />
+    <a href="{% url 'demo' 5 4 %}">click here to view demo page</a>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Location</title>
+    <style>
+        fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        }
+        table{
+        margin: 0 auto;
+        width:600px;
+        }
+        table tr th{
+        vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <FIELDSET><legend align="center">Add Employee Form</legend>
+        <form action="" method="post" novalidate >
+            {% csrf_token %}
+            <table cellpadding="3" cellspacing="2" border="0" width="600">
+                {% if message %}
+                    <tr>
+                        <td style="color:green; font-weight:bold;" colspan="2">
+                            {{ message }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th align="center">
+                        {{ locForm.state.label }}
+                    </th>
+                    <td>
+                        {{ locForm.state }}  {{ locForm.state.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="reset" value="Reset Form">
+                    </td>
+                    <td>
+                        <input type="submit" value="Submit Form">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </FIELDSET>
+</body>
+</html>

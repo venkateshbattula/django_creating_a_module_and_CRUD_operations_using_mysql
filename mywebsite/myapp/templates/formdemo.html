@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registartion Page</title>
+    <style>
+        #id_gender{
+        list-style-type: none;
+        margin:0px;
+        padding:0px;
+        }
+        #id_gender li{
+        display: inline;
+        margin:0px;
+        padding:0px;
+        }
+        fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        }
+        table{
+        margin: 0 auto;
+        width:600px;
+        }
+        table tr th{
+        vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <FIELDSET><legend align="center">Registration Of Student</legend>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            <table cellpadding="3" cellspacing="2" border="0" width="600">
+                {% if message %}
+                    <tr>
+                        <td style="color:green; font-weight:bold;" colspan="2">
+                            {{ message }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th align="center">
+                        {{ vdf.name.label }}
+                    </th>
+                    <td>
+                        {{ vdf.name }}  {{ vdf.name.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.gender.label }}
+                    </th>
+                    <td>
+                        {{ vdf.gender }}  {{ vdf.gender.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.email.label }}
+                    </th>
+                    <td>
+                        {{ vdf.email }}  {{ vdf.email.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.password.label }}
+                    </th>
+                    <td>
+                        {{ vdf.password }}  {{ vdf.password.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.con_password.label }}
+                    </th>
+                    <td>
+                        {{ vdf.con_password }}  {{ vdf.con_password.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.address.label }}
+                    </th>
+                    <td>
+                        {{ vdf.address }}  {{ vdf.address.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.state.label }}
+                    </th>
+                    <td>
+                        {{ vdf.state }}  {{ vdf.state.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.percentage.label }}
+                    </th>
+                    <td>
+                        {{ vdf.percentage }}  {{ vdf.percentage.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.admission_date.label }}
+                    </th>
+                    <td>
+                        {{ vdf.admission_date }}  {{ vdf.admission_date.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ vdf.agreetmc.label }}
+                    </th>
+                    <td>
+                        {{ vdf.agreetmc }}  {{ vdf.agreetmc.errors }}
+                    </td>
+                </tr>
+<!--                {{ vdf }}-->
+                <tr>
+                    <td align="center">
+                        <input type="reset" value="Reset Form">
+                    </td>
+                    <td>
+                        <input type="submit" value="Submit Form">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </FIELDSET>
+</body>
+</html>

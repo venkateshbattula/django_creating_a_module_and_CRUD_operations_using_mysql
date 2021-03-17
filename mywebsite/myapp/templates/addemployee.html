@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Employee</title>
+    <style>
+        #id_gender{
+        list-style-type: none;
+        margin:0px;
+        padding:0px;
+        }
+        #id_gender li{
+        display: inline;
+        margin:0px;
+        padding:0px;
+        }
+        fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        }
+        table{
+        margin: 0 auto;
+        width:600px;
+        }
+        table tr th{
+        vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <FIELDSET><legend align="center">Add Employee Form</legend>
+        <form action="" method="post" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
+            <table cellpadding="3" cellspacing="2" border="0" width="600">
+                {% if message %}
+                    <tr>
+                        <td style="color:green; font-weight:bold;" colspan="2">
+                            {{ message }}
+                        </td>
+                    </tr>
+                {% endif %}
+                <tr>
+                    <th align="center">
+                        {{ emp_form.name.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.name }}  {{ emp_form.name.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ emp_form.gender.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.gender }}  {{ emp_form.gender.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ emp_form.package.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.package }}  {{ emp_form.package.errors }} <br />
+                        <strong>{{ emp_form.package.help_text }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ emp_form.address.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.address }}  {{ emp_form.address.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ emp_form.location.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.location }}  {{ emp_form.location.errors }}
+                    </td>
+                </tr>
+                <tr>
+                    <th align="center">
+                        {{ emp_form.photo.label }}
+                    </th>
+                    <td>
+                        {{ emp_form.photo }}  {{ emp_form.photo.errors }} <br />
+                        <strong>{{ emp_form.photo.help_text }}</strong>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <input type="reset" value="Reset Form">
+                    </td>
+                    <td>
+                        <input type="submit" value="Submit Form">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </FIELDSET>
+</body>
+</html>

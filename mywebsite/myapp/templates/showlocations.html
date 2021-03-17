@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location List</title>
+    <style>
+    fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        text-align: center;
+        }
+
+    </style>
+    <script>
+        function confirmdelete(e, name){
+        if(!confirm('Are you sure to delete ' + name + '?')){
+        e.preventDefault();
+        }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Location List</legend>
+        <table cellpadding="2" cellspacing="3" border="1" width="100%">
+            {% if loc_list %}
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            {% for loc in loc_list %}
+                <tr>
+                    <td>{{ loc.state }}</td>
+                    <td>
+                        <a href="{% url 'updatelocation' loc.id %}" >Update</a>
+                        <a onclick="confirmdelete(event, '{{ loc.state }}')" href="{% url 'deletelocation' loc.id %}" >Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <th>No Location data found</th>
+                </tr>
+            {% endif %}
+        </table>
+    </fieldset>
+</body>
+</html>

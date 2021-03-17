@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Registration</title>
+    <style>
+    fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        text-align: center;
+        }
+    table{
+        margin: 0 auto;
+        width:600px;
+        }
+        table tr th{
+        vertical-align: top;
+        }
+    ul.errorlist{
+            margin:0px;
+            padding:0px;
+            }
+            ul.errorlist li{
+            list-style-type:none;
+            color:#CC0000;
+        }
+    </style>
+</head>
+<body>
+    <fieldset>
+        <legend>User Registration Form</legend>
+    <form action="" method="post" novalidate >
+        {% csrf_token %}
+        <table cellspacing="2" cellpadding="3" border="1">
+            {% if message %}
+            <tr>
+                <th colspan="2" style="color:green;">
+                    {{ message }}
+                </th>
+            </tr>
+            {% endif %}
+            <tr>
+                <th>
+                    {{ reg_form.first_name.label }}
+                </th>
+                <td>
+                    {{ reg_form.first_name }} {{ reg_form.first_name.errors }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ reg_form.last_name.label }}
+                </th>
+                <td>
+                    {{ reg_form.last_name }} {{ reg_form.last_name.errors }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ reg_form.email.label }}
+                </th>
+                <td>
+                    {{ reg_form.email }} {{ reg_form.email.errors }} <br> {{ reg_form.email.help_text }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ reg_form.password.label }}
+                </th>
+                <td>
+                    {{ reg_form.password }} {{ reg_form.password.errors }} <br> {{ reg_form.password.help_text }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    {{ reg_form.re_password.label }}
+                </th>
+                <td>
+                    {{ reg_form.re_password }} {{ reg_form.re_password.errors }}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    <input type="reset" value="Reset Form">
+                </th>
+                <th>
+                    <input type="submit" value="Submit Form">
+                </th>
+            </tr>
+        </table>
+    </form>
+    </fieldset>
+</body>
+</html>

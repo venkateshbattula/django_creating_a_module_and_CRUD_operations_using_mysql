@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee List</title>
+    <style>
+    fieldset legend{
+        font-weight: bold;
+        font-size: 24px;
+        color:#CC0000;
+        text-align: center;
+        }
+
+    </style>
+    <script>
+        function confirmdelete(e, name){
+        if(!confirm('Are you sure to delete ' + name + '?')){
+        e.preventDefault();
+        }
+        }
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Employee List</legend>
+        <table cellpadding="2" cellspacing="3" border="1" width="100%">
+            {% if emp_list %}
+            <tr>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Package</th>
+                <th>Address</th>
+                <th>Location</th>
+                <th>Photo</th>
+                <th>Actions</th>
+            </tr>
+            {% for emp in emp_list %}
+                <tr>
+                    <td>{{ emp.name }}</td>
+                    <td>{{ emp.gender }}</td>
+                    <td>{{ emp.package }}</td>
+                    <td>{{ emp.address }}</td>
+                    <td>{{ emp.location }}</td>
+                    <td><img src="{{ emp.photo.url }}" width="150" height="150" /> </td>
+                    <td>
+                        <a href="{% url 'updateemployee' emp.id %}" onclick="confirmupdate(event,'{{ emp.name }}')">Update</a> |
+                        <a href="{% url 'deleteemployee' emp.id %}" onclick="confirmdelete(event,'{{ emp.name }}')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <th>No employee data found</th>
+                </tr>
+            {% endif %}
+        </table>
+        {% if emp_list.has_previous %}
+            <!-- you are here means previous page is available
+            because has_previous method return true for previous page -->
+            <!-- Link to first page number -->
+            <a href="?page=1">&laquo; First</a>
+            <!-- Link to previous page number -->
+            <!-- previous_page_number method returns previous page number-->
+            <a href="?page={{ emp_list.previous_page_number }}">Previous</a>
+        {% endif %}
+        <span class="current">
+            <!-- numbers property refers to current page number -->
+            <!-- num_pages of paginator refers to total number of pages -->
+            Page {{ emp_list.number }} of {{ emp_list.paginator.num_pages }}.
+        </span>
+        {% if emp_list.has_next %}
+            <!-- you are here means next page is available
+            because has_next method return true if next page available -->
+            <a href="?page={{ emp_list.next_page_number }}">Next</a>
+            <!-- previous_page_number method returns previous page number-->
+            <a href="?page={{ emp_list.paginator.num_pages }}">Last &raquo;</a>
+        {% endif %}
+    </fieldset>
+</body>
+</html>
